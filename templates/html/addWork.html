@@ -1,0 +1,48 @@
+<?php include 'header.html';?>
+<div id="container">
+	<form action="index.php?action=addWork" method="post">
+		<input type="hidden" name="command" value="insert" />
+		<table>
+			<tr>
+				<td>Work Name</td>
+				<td><input type="text" name="work_name"> <?php if(count($err) > 0 && $err['work_name'] != null) : ?>
+					<div class="err">
+						<?php echo $err['work_name'];?>
+					</div> <?php endif; ?></td>
+			</tr>
+			<tr>
+				<td>Starting Date</td>
+				<td><input id="startingDate" type="date" name="start_date" />
+					<?php if(count($err) > 0 && $err['start_date'] != null) : ?>
+					<div class="err">
+						<?php echo $err['start_date'];?>
+					</div> <?php endif; ?></td>
+			</tr>
+			<tr>
+				<td>Ending Date</td>
+				<td><input id="endingDate" type="date" name="end_date" /> 
+				<?php if(count($err) > 0 && $err['end_date'] != null) : ?>
+					<div class="err">
+						<?php echo $err['end_date'];?>
+					</div> <?php endif; ?></td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td><select name="status">
+						<?php foreach ($status as $key=>$s): ?> ?>
+						<option value="<?php echo $key;?>">
+							<?php echo $s; ?>
+						</option>
+						<?php endforeach; ?>
+				</select> <?php if(count($err) > 0 && $err['status'] != null) : ?>
+					<div class="err">
+						<?php echo $err['status'];?>
+					</div> <?php endif; ?></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="Submit"
+					id="form_button" value="Add Work" /></td>
+			</tr>
+		</table>
+	</form>
+</div>

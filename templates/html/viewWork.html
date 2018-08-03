@@ -1,0 +1,42 @@
+<?php include 'header.html';?>
+<div id="container">
+<?php if ($err['success'] != null) : ?>
+<div class="success"> <?php echo $err['success']; ?></div>
+<?php endif; ?>
+<form action="index.php?action=editWork" method="post" id="formEdit">
+	<input type="hidden" name="command" id="command" />
+	<input type="hidden" name="id" value="<?php echo $work['id']; ?>" />
+	<table>
+		<tr>
+			<td>Work Name</td>
+			<td><input type="text" name="work_name" value="<?php echo $work['work_name']; ?>"></td>
+		</tr>
+		<tr>
+			<td>Starting Date</td>
+			<td><input id="startingDate" type="date" name="start_date" value="<?php echo $work['starting_date']; ?>" /></td>
+		</tr>
+		<tr>
+			<td>Ending Date</td>
+			<td><input id="endingDate" type="date" name="end_date" value="<?php echo $work['ending_date']; ?>"/></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td><select name="status">
+					<?php foreach ($status as $key=>$s): ?> 
+					<option value="<?php echo $key;?>"
+					 <?php if ($key == $work['status']): ?> selected="selected" <?php endif; ?>><?php echo $s; ?>
+					 </option>
+					<?php endforeach; ?>
+			</select></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<input type="button" name="Edit" id="form_button" onclick="viewWorkSubmit(1);"
+				value="Eitd Work" />
+				<input type="button" name="Delete" id="form_button" onclick="viewWorkSubmit(2);"
+				value="Delete Work" />
+				</td>
+		</tr>
+	</table>
+</form>
+</div>

@@ -1,0 +1,29 @@
+<?php include 'header.html';?>
+<script>
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      defaultDate: '2018-08-01',
+      editable: false,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+			<?php foreach($listData as $key=>$work): ?>
+               {
+                 title: <?php echo "'" . $work['work_name'] . "'"; ?>,
+                 start: <?php echo "'" . $work['starting_date'] . "'"; ?>,
+                 end: <?php echo "'" . $work['ending_date'] . " 23:59:59" . "'"; ?>,
+                 url: <?php echo "'" . "index.php?action=editWork&id=" . $work['id'] . "'"; ?>,
+                 className: <?php echo "'bgColorStatus" . $work['status'] . "'"; ?>
+               },
+            <?php endforeach; ?>
+             ]
+    });
+
+  });
+
+</script>
+<?php foreach ($err as $_k => $_e) : if ($_e != null) :?>
+<div class=<?php if ($_e != null) { echo "success"; } else {echo "error"; } ?>> <?php  echo $_e; ?></div>
+<?php endif; ?>
+<?php endforeach; ?>
+	<div id='calendar'></div>
